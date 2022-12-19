@@ -1,0 +1,56 @@
+# show dbs
+# use dbsname #can do create database also
+# show collection
+# db.createCollection
+# db.createCollection('art1')
+# delete collection -> db.products.drop()
+# db.dropDatabase()
+#db.collection_name.find() check collection
+# db.collectionname.insert() insert data in collection
+# db.art.insertOne({name:"keyborad",price:1000})
+ db.reviews.insertMany([{text:"this is good product",stars:4 ,productid:""},{text:"very bad product",stars:2,productid:""}])
+ db.products.insertMany([{name:"Moniter",price:3000},{name:"Tv",price:5000},{name:"mouse",price:500}])
+createIndex
+
+# db.products.createIndex({name:1})
+# db.products.find({name:"100"}).explain('executionStats')
+# draw back in index your read fast but write speed will be slow and default index apply on id and you can delete createing  index but not id (beause is default apply indexing ) 
+
+
+# db.collectionname.getIndexs()
+# db.collection_name.dropIndex('name_1')
+
+# authecation and access control in mongodb
+db.createUser(
+    {
+        user:'superadmin',
+        pwd:passwordPrompt(),
+        roles:[
+           { role:"role" ,db:"db_name"},
+           "readWriteAnyDatabase"
+        ]
+    }
+)
+
+
+db.createUser(
+    {
+        user:'root1',
+        pwd:passwordPrompt(),
+        roles:[
+           { role:"readWrite" ,db:"ecom"},
+           ,{
+            role:"read" ,db:"pizza"},
+           }
+        ]
+    }
+)
+
+
+# db.createUser({user:'superadmin',pwd:passwordPrompt(),roles:[{ role:"userAdminAnyDatabase" ,db:"admin"},"readWriteAnyDatabase"]}) #then restart mongodb server
+db.createUser({user:'echouser',pwd:passwordPrompt(),roles:[{ role:"read" ,db:"pizza"}]}) 
+
+mongo --port 27017 --authecationDatabase "database_name" -u "username"  -p 
+
+# get current user 
+# db.runCommand({connectionStatus:1})
