@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const connectUri = 'mongodb+srv://root:root@cluster0.v2whlsu.mongodb.net/myblog'
+const connectUri = ''
 
 async function s() {
     try {
